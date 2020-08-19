@@ -3,28 +3,62 @@ from colorama import init
 from colorama import Fore, Style
 init()
 
-#Todo: Drop item-->Item Database-->Validate Item Existence-->Player basics-->???
+#Todo: Item Database-->Validate Item Existence-->Player basics-->???
 
 #Error Codes:
 #1 - Couldnt add item for some reason,figure it out 
 
 
-print("Inventory System 0.0.1 by: github.com/trkviktor")
+print(Fore.GREEN + "Inventory System 0.0.1 by: github.com/trkviktor\n")
+print(Style.RESET_ALL)
 msg = "slot is full"
 items = ["Sword", "Axe"]
 
 
-inventorySlot1 = ["Sword"]
+inventorySlot1 = []
 inventorySlot2 = ["armor"]
-inventorySlot3 = ["axe"]
+inventorySlot3 = []
 inventorySlot4 = ["axe"]
 inventory = [inventorySlot1, inventorySlot2, inventorySlot3,inventorySlot4]
 
 
 
 def addItem(name, slot):
-    slot.append(name)
-    print(slot[0])
+        if not inventorySlot1:
+            slot = inventorySlot1
+            slot.append(name)
+        elif not inventorySlot2 :
+            slot = inventorySlot2
+            slot.append(name)
+        elif not inventorySlot3:
+            slot = inventorySlot3
+            slot.append(name)
+        elif not inventorySlot4:
+            slot = inventorySlot4
+            slot.append(name)
+        elif inventory:
+            print("\n" + Fore.RED + "Inventory is full")
+            print(Style.RESET_ALL)
+        else:
+            print("\n" + Fore.RED + "Something went wrong-beep boop error code: 1")
+            print(Style.RESET_ALL)
+        
+    
+def deleteItem(slot):
+    removeSlotName = input("\n\nEnter your desired slot(1-4): ")
+    if removeSlotName == "1":
+        slot = inventorySlot1
+    elif removeSlotName == "2":
+        slot = inventorySlot2
+    elif removeSlotName == "3":
+        slot = inventorySlot3
+    elif removeSlotName == "4":
+        slot = inventorySlot4
+    else:
+        print("\n\nEnter a valid slot!")
+    
+
+    slot.clear()
 
 
 def getInventory():
@@ -50,28 +84,26 @@ def getInventory():
     print("\n----------\n")
 
 
-name = input("Enter your items name:")
-
-if not inventorySlot1:
-    slot = inventorySlot1
-    addItem(name, slot)
-elif not inventorySlot2 :
-    slot = inventorySlot2
-    addItem(name, slot)
-elif not inventorySlot3:
-    slot = inventorySlot3
-    addItem(name, slot)
-elif not inventorySlot4:
-    slot = inventorySlot4
-    addItem(name, slot)
-elif inventory:
-    print("\n" + Fore.RED + "Inventory is full")
-    print(Style.RESET_ALL)
-else:
-    print("\n" + Fore.RED + "Something went wrong-beep boop error code: 1")
-    print(Style.RESET_ALL)
-    
-   
-getInventory()
-    
-
+while True:
+        print("\nEnter your desired menu option:")
+        menuInput = input("Options: Inventory,Additem,Removeitem,Exit :\n\n")
+        if menuInput == "Inventory":
+            getInventory()
+        elif menuInput == "inventory":
+            getInventory()
+        elif menuInput == "Additem":
+            name = input("Enter your items name:")
+            addItem(name, inventorySlot4)
+        elif menuInput == "additem":
+            name = input("Enter your items name:")
+            addItem(name, inventorySlot4)
+        elif menuInput == "Removeitem":
+            deleteItem(inventorySlot4)
+        elif menuInput == "removeitem":
+            deleteItem(inventorySlot4)
+        elif menuInput == "Exit":
+            break
+        elif menuInput == "exit":
+            break
+        else:
+            continue
