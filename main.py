@@ -3,6 +3,8 @@ from colorama import init
 from colorama import Fore, Style
 init()
 
+openMenu = True
+
 #Todo: Player basics-->???
 
 #Error Codes:
@@ -13,11 +15,21 @@ print(Fore.GREEN + "Inventory System 0.0.1 by: github.com/trkviktor\n")
 print(Style.RESET_ALL)
 msg = "slot is full"
 
-items = [
-        "Sword",
-         "Axe",
-         "Armor"
-        ]
+
+axes = ["Diamond Axe", "Iron Axe"]
+armors = ["Steel Armor", "Leather Armor"]
+swords = ["Wooden Sword", "Gold Sword"]
+
+itemDB = [axes,armors,swords]
+
+items = []
+for i in itemDB:
+    items.extend(i)
+
+
+
+print(items)
+
 
 
 
@@ -127,4 +139,6 @@ def Menu():
             else:
                 continue
 
-Menu()
+
+if openMenu:
+    Menu()
